@@ -21,7 +21,14 @@ app.engine('adds', (filePath, options, callback) => {
     fs.readFile(filePath, (err, content)=>{
         if (err) return callback(err)
         const render = content.toString()
-        .replace()
+        .replace('#title', '<title>' + options.title + '</title>')
+        .replace('#words', '<h1>' + options.words + '</h1>')
+        .replace('#list', '<ul>' + options.list + '</ul>')
+        .replace('#list1', '<li>' + options.list1 + '</li>')
+        .replace('#list2', '<li>' + options.list2 + '</li>')
+        .replace('#list3', '<li>' + options.list3 + '</li>')
+        .replace('#para', '<p>' + options.para + '</p>')
+        return callback(null,render)
 
     })
 })
@@ -33,7 +40,7 @@ app.set('view engine', 'hypatia') // register the hypatia view engine
 app.set('view engine','adds')
 app.get('/dog', (req,res)=> {res.render('template.hypatia', {title:'A dog', message: 'This here is a dog',img:'https://cdn.pixabay.com/photo/2016/01/05/17/51/maltese-1123016__480.jpg', content: 'This dog is not available for sell'})
 })
-
+app.get('/listofthings',(req,res)=> {res.render('template.adds', {title:'LIST', words: 'my list of things', list1: "woah", list2: "this", list3: "crazy", para: 'I wonder if this works' })})
 
 
 app.get('/test', (req,res) => {
