@@ -43,6 +43,16 @@ app.get('/dog', (req,res)=> {res.render('template.hypatia', {title:'A dog', mess
 app.get('/listofthings',(req,res)=> {res.render('template.adds', {title:'LIST', words: 'my list of things', list1: "woah", list2: "this", list3: "crazy", para: 'I wonder if this works' })})
 
 
+app.get('/here', (req,res)=>{res.send('<title> here </title>')})
+
+app.get('/are', (req,res)=>{res.send('<title> are </title>')})
+
+app.get('/your', (req,res)=>{res.send('<title> your </title>')})
+
+app.get('/10', (req,res)=>{res.send('<title> 10 </title>')})
+
+app.get('/routes', (req,res)=>{res.send('<title> routes </title>')})
+
 app.get('/test', (req,res) => {
     res.send('TESTING')
 })
@@ -50,6 +60,11 @@ app.get('/test', (req,res) => {
 app.get('/:boroughsofnyc', (req, res) => {
     res.send(boroughs[req.params.boroughsofnyc])
 });
+
+app.get('/woah/:im/:here', (req,res)=> {
+    res.send('man ' + req.params.im + ' ' + req.params.here)
+})
+
 
 
 app.listen(port,() => {
